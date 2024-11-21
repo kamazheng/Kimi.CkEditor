@@ -1,8 +1,10 @@
 ﻿@using Microsoft.AspNetCore.Components.Forms
 @inherits InputTextArea
 
+<div id="@kimiCkEditorDiv">
 <textarea @attributes="AdditionalAttributes"
             id="@editorId"
             class="@CssClass"
             value="@CurrentValue"></textarea>
+</div>
 

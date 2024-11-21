@@ -79,6 +79,12 @@ namespace Kimi.CkEditor
             await module.InvokeAsync<string>("setNotScrollMaxHeight", new object[] { id, desiredMargin });
         }
 
+        public async ValueTask setNotScrollMaxHeightByClass(string className, int desiredMargin)
+        {
+            var module = await kimiTask.Value;
+            await module.InvokeAsync<string>("setNotScrollMaxHeightByClass", new object[] { className, desiredMargin });
+        }
+
         public async ValueTask setDivReadonlyByDivId(string id, bool isReadOnly)
         {
             var module = await kimiTask.Value;

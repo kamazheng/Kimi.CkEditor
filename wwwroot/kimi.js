@@ -45,6 +45,21 @@ export function setNotScrollMaxHeight(id, desiredMargin) {
     }
 }
 
+export function setNotScrollMaxHeightByClass(className, desiredMargin) {
+    const elements = document.getElementsByClassName(className);
+    if (elements.length > 0) {
+        const viewportHeight = window.innerHeight;
+        for (let i = 0; i < elements.length; i++) {
+            const element = elements[i];
+            const absoluteTop = getAbsoluteTop(element);
+            if (absoluteTop !== null) {
+                const height = viewportHeight - absoluteTop - desiredMargin;
+                element.style.height = height + 'px';
+            }
+        }
+    }
+}
+
 function getAbsoluteTop(element) {
     if (element) {
         const rect = element.getBoundingClientRect ? element.getBoundingClientRect() : null;

@@ -11,7 +11,11 @@ public partial class CkEditor : IAsyncDisposable
     [Parameter]
     public bool IsReadonly { get; set; } = false;
 
+    [Parameter]
+    public bool IsFullScreen { get; set; } = false;
+
     private string editorId { get; set; } = "kimi-ckeditor-8973";
+    private string kimiCkEditorDiv { get; set; } = "kimiCkEditorDiv-8973";
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -20,6 +24,11 @@ public partial class CkEditor : IAsyncDisposable
             string funcName = nameof(this.EditorDataChanged)!;
             await JsInterop.createCkEditor(editorId, editorId, CurrentValue!, IsReadonly, funcName, DotNetObjectReference.Create(this));
             await JsInterop.SetCkEditorReadonly(editorId, IsReadonly);
+            await JsInterop.SetAllSubElementsWithSameSelector(kimiCkEditorDiv);
+            if (IsFullScreen)
+            {
+                await JsInterop.setNotScrollMaxHeightByClass("ck-editor__main", 0);
+            }
         }
     }
 
