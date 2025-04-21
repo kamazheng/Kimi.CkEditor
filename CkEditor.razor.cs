@@ -14,8 +14,8 @@ public partial class CkEditor : IAsyncDisposable
     [Parameter]
     public bool IsFullScreen { get; set; } = false;
 
-    private string editorId { get; set; } = "kimi-ckeditor-8973";
-    private string kimiCkEditorDiv { get; set; } = "kimiCkEditorDiv-8973";
+    private readonly string editorId = TagIdGenerator.Create();
+    private readonly string kimiCkEditorDiv = TagIdGenerator.Create();
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
